@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import BlogList from './components/BlogList';
-import SinglePost from './screens/SinglePost';
+import BlogList from './src/components/BlogList';
+import SinglePost from './src/screens/SinglePost';
 
 const Stack = createStackNavigator();
 
