@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, StyleSheet } from 'react-native';
+import { ScrollView, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import RenderHtml from 'react-native-render-html';
 
 const styles = StyleSheet.create({
@@ -17,11 +17,12 @@ const styles = StyleSheet.create({
 
 export default function SinglePost({ route }) {
     const { post } = route.params;
-
+    const { width } = useWindowDimensions();
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.title}>{post.title.rendered}</Text>
             <RenderHtml 
+                contentWidth={width}
                 source={{ html: post.content.rendered }} 
                 baseStyle={styles.content} 
             />

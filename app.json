@@ -1,9 +1,9 @@
 {
   "expo": {
     "name": "AwesomeProject",
-    "slug": "AwesomeProject",
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "slug": "test",
+    "version": "1.0.1",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -15,16 +15,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.msrajawat298.test"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.msrajawat298.test",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "80decbf6-d694-4bfb-88e9-7fef074edf00"
+      }
+    },
+    "owner": "msrajawat298"
   }
 }

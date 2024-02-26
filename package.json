@@ -6,7 +6,12 @@
     "start": "expo start -c",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build:abb": "eas build -p android",
+    "build": "eas build -p android --profile preview",
+    "build:ios": "eas build -p ios --profile preview",
+    "deploy": "eas submit -p android",
+    "deploy:ios": "eas submit -p ios"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.12",
