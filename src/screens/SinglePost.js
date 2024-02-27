@@ -18,12 +18,13 @@ const styles = StyleSheet.create({
 export default function SinglePost({ route }) {
     const { post } = route.params;
     const { width } = useWindowDimensions();
+    const filteredContent = post.content.rendered.replace(/<iframe.*?<\/iframe>/gi, '');
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.title}>{post.title.rendered}</Text>
             <RenderHtml 
                 contentWidth={width}
-                source={{ html: post.content.rendered }} 
+                source={{ html: filteredContent }}
                 baseStyle={styles.content} 
             />
         </ScrollView>
