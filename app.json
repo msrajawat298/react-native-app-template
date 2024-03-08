@@ -24,7 +24,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.msrajawat298.test",
-      "versionCode": 7
+      "versionCode": 10
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
