@@ -1,18 +1,53 @@
-import { StyleSheet, Text, View } from "react-native";
-import { Link } from "expo-router";
+import { Link } from 'expo-router';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-export default function Page() {
+const Page = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.main}>
-        <Text style={styles.title}>Hello World test</Text>
-        <Text style={styles.subtitle}>This is the first page of your app.</Text>
-        <Link href="/about"> Go About Page</Link>
-      </View>
+      <Text style={styles.title}>Home Page</Text>
+      {/* See This to know more about Link :: https://docs.expo.dev/router/navigating-pages/#buttons */}
+      <Link href={'/about'} asChild>
+        <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 8,
+          }}>
+          <Text style={{ fontSize: 18 }}>Open about</Text>
+          <Ionicons name="arrow-forward" size={18} />
+        </TouchableOpacity>
+      </Link>
+
+      <Link href={'/nested_page/nested_page'} asChild>
+        <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 8,
+          }}>
+          <Text style={{ fontSize: 18 }}>Open Details</Text>
+          <Ionicons name="arrow-forward" size={18} />
+        </TouchableOpacity>
+      </Link>
+      <Link href={'/(tabs)'} asChild>
+        <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 8,
+          }}>
+          <Text style={{ fontSize: 18 }}>Open Tabs</Text>
+          <Ionicons name="arrow-forward" size={18} />
+        </TouchableOpacity>
+      </Link>
     </View>
   );
-}
-
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -34,3 +69,4 @@ const styles = StyleSheet.create({
     color: "#38434D",
   },
 });
+export default Page;

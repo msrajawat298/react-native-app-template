@@ -5,7 +5,7 @@ import BlogList from './components/BlogList';
 import SinglePost from './screens/SinglePost';
 const Stack = createStackNavigator();
 
-export default function Main() {
+export default function AppContent() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -17,12 +17,12 @@ export default function Main() {
 
   return (
     <NavigationContainer>
-    <Stack.Navigator>
-        <Stack.Screen name="BlogList">
-        {(props) => <BlogList {...props} posts={posts} />}
-        </Stack.Screen>
-        <Stack.Screen name="SinglePost" component={SinglePost} />
-    </Stack.Navigator>
+      <Stack.Navigator>
+          <Stack.Screen name="BlogList">
+          {(props) => <BlogList {...props} posts={posts} />}
+          </Stack.Screen>
+          <Stack.Screen name="SinglePost" component={SinglePost} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

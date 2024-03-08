@@ -1,12 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Link } from "expo-router";
 
-export default function About() {
+export default function details() {
   return (
     <View style={styles.container}>
       <View style={styles.main}>
-        <Text style={styles.title}>About Page</Text>
-        <Text style={styles.subtitle}>This is About page</Text>
+        <Text style={styles.subtitle}>Transparent Modal</Text>
       </View>
       <Link href="/">Go to Home</Link>
     </View>
