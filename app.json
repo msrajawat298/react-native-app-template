@@ -5,10 +5,10 @@
     "scheme": "awesomeproject",
     "version": "1.0.1",
     "orientation": "default",
-    "icon": "./src/assets/icon.png",
+    "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./app/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,14 +22,14 @@
     "android": {
       "userInterfaceStyle": "automatic",
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.msrajawat298.test",
       "versionCode": 10
     },
     "web": {
-      "favicon": "./src/assets/favicon.png"
+      "favicon": "./app/assets/favicon.png"
     },
     "extra": {
       "eas": {
