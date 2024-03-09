@@ -19,11 +19,7 @@ export default function TabLayout() {
           title: 'Blog Posts',
           tabBarIcon: ({ size, color }) => <Ionicons name="list" size={size} color={color} />,
           tabBarBadge: 9,
-          headerRight: () => (
-            <Link href={'/about'} replace>
-              <FontAwesome size={28} name="home" />
-            </Link>
-          ),
+          headerShown: false,
         }}
       />
       <Tabs.Screen
@@ -31,13 +27,6 @@ export default function TabLayout() {
         options={{
           title: 'Settings',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="[id]"
-        options={{
-          title: '',
-          href: null,
         }}
       />
       <Tabs.Screen

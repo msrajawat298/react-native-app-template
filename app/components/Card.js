@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Card = ({post}) => {
+export default Card = ({post, router}) => {
   console.clear();
   console.table(post);
   return (post?.item && (
-      <Link href={`/tabs/${post?.item?.id?.toString()}`} asChild>
+      <Link href={`${router}${post?.item?.id?.toString()}`} asChild>
         <TouchableOpacity style={styles.card}>
           <Text style={styles.title}>{post?.item?.title?.rendered}</Text>
         </TouchableOpacity>

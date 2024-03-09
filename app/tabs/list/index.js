@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, View } from 'react-native';
-import Card from '../components/Card';
+import Card from '../../components/Card';
 
 const Page = () => {
   const [post, setPost] = useState([]);
@@ -17,7 +17,7 @@ const Page = () => {
       <FlatList
         data={post}
         keyExtractor={(post) => post?.id?.toString()}
-        renderItem={(post) =>  <Card post={post} />}
+        renderItem={(post) =>  <Card post={post} router={"/tabs/list/"}/>}
         ListEmptyComponent={() => <ActivityIndicator />}
         ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#ccc' }} />}
       />
