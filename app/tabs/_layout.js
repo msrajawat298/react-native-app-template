@@ -20,8 +20,8 @@ export default function TabLayout() {
           tabBarIcon: ({ size, color }) => <Ionicons name="list" size={size} color={color} />,
           tabBarBadge: 9,
           headerRight: () => (
-            <Link href={'/'} replace>
-              <Ionicons name="log-out-outline" size={28} color={'#fff'} />
+            <Link href={'/about'} replace>
+              <FontAwesome size={28} name="home" />
             </Link>
           ),
         }}
@@ -40,6 +40,21 @@ export default function TabLayout() {
           href: null,
         }}
       />
+      <Tabs.Screen
+          name="action"
+          options={{
+            title: 'Action',
+            tabBarIcon: ({ size, color }) => (
+              <Ionicons name="alert-circle-outline" size={size} color={color} />
+            ),
+          }}
+          listeners={() => ({
+            tabPress: (e) => {
+              e.preventDefault();
+              alert('Action Performed!');
+            },
+          })}
+        />
     </Tabs>
   );
 }

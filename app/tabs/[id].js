@@ -20,7 +20,6 @@ export default function SinglePost() {
   const [postDetails, setPostDetails] = useState(null);
 
   useEffect(() => {
-    console.log('id :: ' + id);
     fetch(`https://blog.vitabletech.in/wp-json/wp/v2/posts/${id}`)
       .then((response) => response.json())
       .then((data) => setPostDetails(data))
