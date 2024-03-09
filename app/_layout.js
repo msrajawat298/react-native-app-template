@@ -16,7 +16,8 @@ const RootLayout = () => {
       }}>
       <Stack.Screen name="index" options={{ title: 'Home', headerShown: true }} />
       <Stack.Screen name="about" options={{ title: 'About', headerBackTitle: 'Go Back' }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="tabs" options={{ headerShown: false }} />
+      <Stack.Screen name="drawer" options={{ headerShown: false }} />
 
       <Stack.Screen
         name="nested_page/nested_page"
