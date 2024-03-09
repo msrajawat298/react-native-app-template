@@ -36,6 +36,9 @@
         "projectId": "80decbf6-d694-4bfb-88e9-7fef074edf00"
       }
     },
-    "owner": "msrajawat298"
+    "owner": "msrajawat298",
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }

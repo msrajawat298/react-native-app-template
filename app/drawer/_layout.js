@@ -1,18 +1,49 @@
 import { Drawer } from 'expo-router/drawer';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 
 {/* Know more about Drawer:: https://docs.expo.dev/router/advanced/drawer/ */}
-function CustomDrawerContent(props) {
+const screens = [
+  {
+    name: "Home",
+    drawerLabel: 'Home',
+    headerTitle: 'Home',
+    icon: { lib: 'Ionicons', name: 'home' },
+    uri: 'https://msrajawat298.blogspot.com/'
+  },
+  {
+    name: "Fb",
+    drawerLabel: 'Facebook',
+    headerTitle: 'Facebook',
+    icon: { lib: 'FontAwesome5', name: 'facebook' },
+    uri: 'https://www.facebook.com/msrajawat298'
+  },
+  {
+    name: "Insta",
+    drawerLabel: 'Instagram',
+    headerTitle: 'Instagram',
+    icon: { lib: 'FontAwesome5', name: 'instagram' },
+    uri: 'https://www.instagram.com/msrajawat298'
+  },
+  {
+    name: "profile",
+    drawerLabel: 'Profile',
+    headerTitle: 'My Profile',
+    icon: { lib: 'Ionicons', name: 'person-outline' },
+  }
+];
+
+const CustomDrawerContent = props => {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
       <DrawerItem label="Help" onPress={() => alert('Link to help')} />
     </DrawerContentScrollView>
   );
-}
+};
+
 const DrawerLayout = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -33,26 +64,23 @@ const DrawerLayout = () => {
             </Link>
           ),
         }}>
-        <Drawer.Screen
-          name="list"
-          options={{
-            drawerLabel: 'List',
-            headerTitle: 'My List',
-            drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-outline" size={size} color={color} />
-            ),
-          }}
-        />
-        <Drawer.Screen
-          name="profile"
-          options={{
-            drawerLabel: 'Profile',
-            headerTitle: 'My Profile',
-            drawerIcon: ({ size, color }) => (
-              <Ionicons name="person-outline" size={size} color={color} />
-            ),
-          }}
-        />
+        {screens.map((screen, index) => {
+          const IconComponent = screen.icon.lib === 'Ionicons' ? Ionicons : FontAwesome5;
+          return (
+            <Drawer.Screen
+              key={index}
+              name={screen.name}
+              initialParams={screen.uri ? { uri: screen.uri } : null}
+              options={{
+                drawerLabel: screen.drawerLabel,
+                headerTitle: screen.headerTitle,
+                drawerIcon: ({ size, color }) => (
+                  <IconComponent name={screen.icon.name} size={size} color={color} />
+                ),
+              }}
+            />
+          );
+        })}
       </Drawer>
     </GestureHandlerRootView>
   );

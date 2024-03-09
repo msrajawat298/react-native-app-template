@@ -21,8 +21,6 @@ const styles = StyleSheet.create({
 });
 
 export default Card = ({post, router}) => {
-  console.clear();
-  console.table(post);
   return (post?.item && (
       <Link href={`${router}${post?.item?.id?.toString()}`} asChild>
         <TouchableOpacity style={styles.card}>
