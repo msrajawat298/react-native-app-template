@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Tabs } from 'expo-router';
+import { Link, Tabs } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TabLayout() {
   return (
@@ -13,10 +14,30 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="list"
+        options={{
+          title: 'Blog Posts',
+          tabBarIcon: ({ size, color }) => <Ionicons name="list" size={size} color={color} />,
+          tabBarBadge: 9,
+          headerRight: () => (
+            <Link href={'/'} replace>
+              <Ionicons name="log-out-outline" size={28} color={'#fff'} />
+            </Link>
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="[id]"
+        options={{
+          title: '',
+          href: null,
         }}
       />
     </Tabs>

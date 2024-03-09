@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Link } from 'expo-router';
 
 const styles = StyleSheet.create({
   card: {
@@ -19,10 +20,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Card({ post, onPress }) {
-  return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
-      <Text style={styles.title}>{post.title.rendered}</Text>
-    </TouchableOpacity>
+export default Card = ({post}) => {
+  console.clear();
+  console.table(post);
+  return (post?.item && (
+      <Link href={`/tabs/${post?.item?.id?.toString()}`} asChild>
+        <TouchableOpacity style={styles.card}>
+          <Text style={styles.title}>{post?.item?.title?.rendered}</Text>
+        </TouchableOpacity>
+    </Link>)
   );
 }
