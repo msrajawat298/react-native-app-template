@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, View } from 'react-native';
-import Card from '../../components/Card';
+import Card from '../../../components/Card';
 
 const Page = () => {
   const [post, setPost] = useState([]);

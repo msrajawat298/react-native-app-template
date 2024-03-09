@@ -14,11 +14,11 @@ const screens = [
     uri: 'https://msrajawat298.blogspot.com/'
   },
   {
-    name: "Fb",
-    drawerLabel: 'Facebook',
-    headerTitle: 'Facebook',
-    icon: { lib: 'FontAwesome5', name: 'facebook' },
-    uri: 'https://www.facebook.com/msrajawat298'
+    name: "Github",
+    drawerLabel: 'Github',
+    headerTitle: 'Github',
+    icon: { lib: 'FontAwesome5', name: 'github' },
+    uri: 'https://msrajawat298.github.io/'
   },
   {
     name: "Insta",
@@ -28,10 +28,24 @@ const screens = [
     uri: 'https://www.instagram.com/msrajawat298'
   },
   {
+    name: "Chat",
+    drawerLabel: 'Know More',
+    headerTitle: 'Know More',
+    icon: { lib: 'Ionicons', name: 'chatbubble' },
+    uri: 'https://llmbymsrajawat298.streamlit.app/'
+  },
+  {
     name: "profile",
     drawerLabel: 'Profile',
     headerTitle: 'My Profile',
     icon: { lib: 'Ionicons', name: 'person-outline' },
+  },
+  {
+    name: "tabs",
+    drawerLabel: 'Tabs',
+    headerTitle: 'Tabs',
+    icon: { lib: 'Ionicons', name: 'person-outline' },
+    headerShown: false,
   }
 ];
 
@@ -74,6 +88,7 @@ const DrawerLayout = () => {
               options={{
                 drawerLabel: screen.drawerLabel,
                 headerTitle: screen.headerTitle,
+                headerShown: screen.headerShown,
                 drawerIcon: ({ size, color }) => (
                   <IconComponent name={screen.icon.name} size={size} color={color} />
                 ),
