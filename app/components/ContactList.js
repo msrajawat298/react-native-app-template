@@ -3,13 +3,25 @@ import { List } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import renderAvatar from './renderAvatar';
 
-const Contact = React.memo(({userData}) => (
-    <List.Item
-        title={`${userData?.name}`}
-        description={`Mobile Number : ${userData?.phoneNumbers[0]?.number}`}
-        left={() => renderAvatar()}
-    />
-));
+const Contact = React.memo(({userData}) => {
+    if (!userData ) return null;
+    
+    const { name, phoneNumbers } = userData;
+    
+    if ( !name || !phoneNumbers || phoneNumbers.length === 0) {
+        return null;
+    }
+
+    const phoneNumber = phoneNumbers[0].number;
+
+    return (
+        <List.Item
+            title={name}
+            description={`Mobile Number : ${phoneNumber}`}
+            left={() => renderAvatar()}
+        />
+    );
+});
 Contact.propTypes = {
         userData: PropTypes.shape({
         name: PropTypes.string,
