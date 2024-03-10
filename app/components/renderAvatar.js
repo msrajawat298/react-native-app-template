@@ -1,4 +1,4 @@
 import React from 'react';
 import { Avatar } from 'react-native-paper';
-
-export default renderAvatar = (props, imageUri) => <Avatar.Image {...props} source={{ uri: imageUri }} />;
+import { PLACEHOLDER_IMAGE } from '../constants/constants';
+export default renderAvatar = (props, imageUri) => <Avatar.Image {...props} source={{ uri: imageUri??PLACEHOLDER_IMAGE }} />;

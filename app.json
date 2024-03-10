@@ -38,7 +38,8 @@
     },
     "owner": "msrajawat298",
     "plugins": [
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-contacts"
     ]
   }
 }
