@@ -49,6 +49,12 @@ const screens = [
     headerTitle: 'My Profile',
     icon: { lib: 'Ionicons', name: 'person-outline' },
   },
+  {
+    name: "TopNavigation",
+    drawerLabel: 'TopNavigation',
+    headerTitle: 'TopNavigation',
+    icon: { lib: 'Ionicons', name: 'person-outline' },
+  },
 ];
 
 const CustomDrawerContent = props => {

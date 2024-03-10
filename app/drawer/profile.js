@@ -9,7 +9,7 @@ const Page = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
   return (
-    <View>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Profile</Text>
       <Button title="Open Drawer" onPress={onToggle} />
     </View>
