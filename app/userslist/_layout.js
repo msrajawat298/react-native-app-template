@@ -16,12 +16,6 @@ const Layout = () => {
           headerShown: false,
         }}
       />
-      <Stack.Screen
-        name="[id]"
-        options={{
-          title: '',
-        }}
-      />
     </Stack>
   );
 };

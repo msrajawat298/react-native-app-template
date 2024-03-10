@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { ActivityIndicator, FlatList, View } from 'react-native';
-import { List, Card, Title, Paragraph, Avatar } from 'react-native-paper';
+import UserDataList from '../components/UserDataList';
 import { API_URL } from '../constants/constants';
 
 const Page = () => {
@@ -10,10 +10,9 @@ const Page = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [page]);
 
-  
-  const fetchData = () => {
+  const fetchData = useCallback(() => {
     setLoading(true);
     fetch(`${API_URL}users?skip=${page}`)
       .then((response) => response.json())
@@ -25,34 +24,27 @@ const Page = () => {
         console.error(error);
         setLoading(false);
       });
-  };
+  }, [page]);
 
-  const handleLoadMore = () => {
+
+  const handleLoadMore = useCallback(() => {
     if (!loading) {
       setPage(users?.length);
-      fetchData();
     }
-  };
+  }, [loading]);
 
-  const ListData = ({userData}) => (
-    <List.Item
-      title={`${userData?.firstName} ${userData?.lastName}`}
-      description={`Username : ${userData?.username} \nPassword : ${userData?.password}`}
-      left={props => <Avatar.Image {...props} source={{ uri: userData?.image }} />}
-    />
-  );
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
-      <FlatList
+      {users.length!==0 && <FlatList
         data={users}
-        keyExtractor={(users) => users?.item?.id?.toString()}
-        renderItem={(item) =>  <ListData userData={item?.item} />}
+        keyExtractor={(users) => `${users?.item?.id?.toString()}-${Math.random()}`}
+        renderItem={(item) =>  <UserDataList userData={item?.item} />}
         ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#ccc' }} />}
-        onEndReached={handleLoadMore}
+        onEndReached={(handleLoadMore)}
         onEndReachedThreshold={0.1}
         ListFooterComponent={() => loading && <ActivityIndicator />}
-      />
+      />}
     </View>
   );
 };

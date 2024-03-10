@@ -1,5 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Link, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 
 const Layout = () => {
   return (
@@ -14,11 +13,7 @@ const Layout = () => {
         name="index"
         options={{
           title: 'Blog Posts',
-          headerRight: () => (
-            <Link href={'/'} replace>
-              <Ionicons name="log-out-outline" size={28} color={'#fff'} />
-            </Link>
-          ),
+          headerShown: false,
         }}
       />
       <Stack.Screen

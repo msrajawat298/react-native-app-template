@@ -8,6 +8,36 @@ import { ActivityIndicator, Platform } from 'react-native';
     Learn more about stack :: https://docs.expo.dev/router/advanced/stack/
     Learn More about Stack option :: https://reactnavigation.org/docs/native-stack-navigator/#options
 */}
+// Define the stack screens data
+const stackScreens = [
+  {
+    name: "index",
+    options: { title: 'Home', headerShown: false }
+  },
+  {
+    name: "drawer",
+    options: { headerShown: false }
+  },
+  {
+    name: "register",
+    options: { title: 'Create Account', headerLeft: null }
+  },
+  {
+    name: "userslist",
+    options: { title: 'User List', headerBackTitle: 'Go Back' }
+  },
+  {
+    name: "privacy",
+    options: {
+      presentation: 'modal',
+      title: 'Privacy',
+      headerStyle: { backgroundColor: Colors.background },
+      headerTintColor: '#fff',
+      headerShown: Platform.OS !== 'ios',
+      headerLeft: null
+    }
+  },
+];
 
 const InitialLayout = () => {
   const { token, initialized } = useAuth();
@@ -37,23 +67,9 @@ const InitialLayout = () => {
           },
           headerTintColor: '#fff',
         }}>
-        <Stack.Screen name="index" options={{ title: 'Home', headerShown: false }} />
-        <Stack.Screen name="tabs" options={{ headerShown: false }} />
-        <Stack.Screen name="drawer" options={{ headerShown: false }} />
-        <Stack.Screen name="register" options={{ title: 'Create Account' }} />
-        <Stack.Screen name="userslist" options={{ title: 'User List', headerBackTitle: 'Go Back' }} />
-        <Stack.Screen
-          name="privacy"
-          options={{
-            presentation: 'modal',
-            title: 'Privacy',
-            headerStyle: {
-              backgroundColor: Colors.background,
-            },
-            headerTintColor: '#fff',
-            headerShown: Platform.OS !== 'ios'
-          }}
-        />
+          {stackScreens.map((screen, index) => (
+            <Stack.Screen key={index} name={screen.name} options={screen.options} />
+          ))}
       </Stack>
     </>
   );

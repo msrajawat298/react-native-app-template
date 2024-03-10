@@ -5,8 +5,10 @@ import {
   TextInput,
   ActivityIndicator,
   TouchableOpacity,
-  Text,
 } from 'react-native';
+import {
+  Text,
+} from 'react-native-paper';
 import React, { useState } from 'react';
 import { useAuth } from './context/AuthContext';
 import { Link } from 'expo-router';
@@ -41,7 +43,6 @@ const Login = () => {
       />
       <Text style={styles.header}>Vitabletech</Text>
       <Text style={styles.subheader}>The app to be.</Text>
-
       <TextInput
         autoCapitalize="none"
         placeholder="Enter you Username"

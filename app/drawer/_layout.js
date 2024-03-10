@@ -3,14 +3,23 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
+import { TouchableOpacity } from 'react-native';
+import { useAuth } from '../context/AuthContext';
 
 {/* Know more about Drawer:: https://docs.expo.dev/router/advanced/drawer/ */}
 const screens = [
   {
-    name: "Home",
+    name: "tabs",
     drawerLabel: 'Home',
     headerTitle: 'Home',
     icon: { lib: 'Ionicons', name: 'home' },
+    headerShown: false,
+  },
+  {
+    name: "Home",
+    drawerLabel: 'Blogger',
+    headerTitle: 'Blogger',
+    icon: { lib: 'FontAwesome5', name: 'blogger' },
     uri: 'https://msrajawat298.blogspot.com/'
   },
   {
@@ -40,13 +49,6 @@ const screens = [
     headerTitle: 'My Profile',
     icon: { lib: 'Ionicons', name: 'person-outline' },
   },
-  {
-    name: "tabs",
-    drawerLabel: 'Tabs',
-    headerTitle: 'Tabs',
-    icon: { lib: 'Ionicons', name: 'person-outline' },
-    headerShown: false,
-  }
 ];
 
 const CustomDrawerContent = props => {
@@ -59,6 +61,7 @@ const CustomDrawerContent = props => {
 };
 
 const DrawerLayout = () => {
+  const { onLogout } = useAuth();
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer
@@ -73,8 +76,10 @@ const DrawerLayout = () => {
           drawerActiveTintColor: '#fff',
           drawerLabelStyle: { marginLeft: -20 },
           headerRight: () => (
-            <Link href={'/'} replace>
-              <Ionicons name="log-out-outline" size={28} color={'#fff'} />
+            <Link href={'/'} replace asChild>
+              <TouchableOpacity onPress={onLogout}>
+                <Ionicons name="log-out-outline" size={28} color={'#fff'} />
+              </TouchableOpacity>
             </Link>
           ),
         }}>
