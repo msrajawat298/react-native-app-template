@@ -1,22 +1,54 @@
-import {
-  View,
-  Image,
-  StyleSheet,
-  TextInput,
-  ActivityIndicator,
-  TouchableOpacity,
-} from 'react-native';
-import {
-  Text,
-} from 'react-native-paper';
+import { View, Image, StyleSheet, TouchableOpacity,} from 'react-native';
+import {useTheme, Text, TextInput, ActivityIndicator} from 'react-native-paper';
 import React, { useState } from 'react';
 import { useAuth } from './context/AuthContext';
 import { Link } from 'expo-router';
-import Colors from './constants/Colors';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const theme = useTheme();
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      padding: 20,
+      backgroundColor: theme.colors.onPrimaryContainer,
+      justifyContent: 'center',
+    },
+    image: {
+      width: '100%',
+      height: 100,
+      resizeMode: 'contain',
+    },
+    header: {
+      fontSize: 40,
+      textAlign: 'center',
+      marginBottom: 10,
+      color: '#fff',
+    },
+    subheader: {
+      fontSize: 18,
+      textAlign: 'center',
+      marginBottom: 40,
+      color: '#fff',
+    },
+    button: {
+      marginTop: 20,
+      alignItems: 'center',
+      backgroundColor: theme.colors.background,
+      padding: 12,
+      borderRadius: 4,
+    },
+    outlineButton: {
+      marginVertical: 8,
+      alignItems: 'center',
+      backgroundColor: 'transparent',
+      padding: 12,
+      borderRadius: 4,
+      borderWidth: 1,
+      borderColor: theme.colors.onPrimaryContainer,
+    },
+  });
+  const [username, setUsername] = useState('atuny0');
+  const [password, setPassword] = useState('9uQFF1Lh');
   const [loading, setLoading] = useState(false);
 
   const { onLogin } = useAuth();
@@ -41,27 +73,24 @@ const Login = () => {
         source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgwCuIIMBRkkp6nsAjT-U-m2kohkyxhRP1vDcPkoRlXkwtiFqGnFphvaSHDD8eYwQE8zU&usqp=CAU' }}
         style={styles.image}
       />
-      <Text style={styles.header}>Vitabletech</Text>
       <Text style={styles.subheader}>The app to be.</Text>
+      
       <TextInput
         autoCapitalize="none"
-        placeholder="Enter you Username"
+        label="Enter you Username"
         value={username}
         onChangeText={setUsername}
-        style={styles.inputField}
-        placeholderTextColor={'#fff'}
       />
+      <View style={{ height: 10 }} />
       <TextInput
-        placeholder="Enter Password"
+        label="Enter Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-        style={styles.inputField}
-        placeholderTextColor={'#fff'}
       />
 
       <TouchableOpacity onPress={login} style={styles.button}>
-        <Text style={{ color: '#fff' }}>Sign in</Text>
+        <Text style={{ color: theme.colors.primary }}>Sign in</Text>
       </TouchableOpacity>
 
       <Link href={'/register'} asChild>
@@ -72,12 +101,12 @@ const Login = () => {
 
       <Link href={'/privacy'} asChild>
         <TouchableOpacity style={{ alignItems: 'center' }}>
-          <Text style={{ color: Colors.primary }}>Privacy Policy</Text>
+          <Text style={{ color: theme.colors.background}} >Privacy Policy</Text>
         </TouchableOpacity>
       </Link>
       <Link href={'/userslist'} asChild>
         <TouchableOpacity style={{ alignItems: 'center' }}>
-          <Text style={{ color: Colors.primary }}>User List</Text>
+          <Text style={{ color: theme.colors.background }}>User List</Text>
         </TouchableOpacity>
       </Link>
 
@@ -93,57 +122,5 @@ const Login = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: Colors.background,
-    justifyContent: 'center',
-  },
-  image: {
-    width: '100%',
-    height: 100,
-    resizeMode: 'contain',
-  },
-  header: {
-    fontSize: 40,
-    textAlign: 'center',
-    marginBottom: 10,
-    color: '#fff',
-  },
-  subheader: {
-    fontSize: 18,
-    textAlign: 'center',
-    marginBottom: 40,
-    color: '#fff',
-  },
-  inputField: {
-    marginVertical: 4,
-    height: 50,
-    borderWidth: 1,
-    borderColor: Colors.primary,
-    borderRadius: 4,
-    padding: 10,
-    color: '#fff',
-    backgroundColor: Colors.input,
-  },
-  button: {
-    marginTop: 20,
-    alignItems: 'center',
-    backgroundColor: Colors.primary,
-    padding: 12,
-    borderRadius: 4,
-  },
-  outlineButton: {
-    marginVertical: 8,
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    padding: 12,
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: Colors.primary,
-  },
-});
 
 export default Login;

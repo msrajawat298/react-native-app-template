@@ -13,13 +13,11 @@ const App = () => {
   // callbacks
   const handleOpenPress = useCallback((index) => {
     bottomSheetRef.current?.snapToIndex(index);
-    console.log('handleSheetChanges', index);
     if (index!==-1) setToggle(true);
   }, []);
   const handleClosePress = useCallback((index) => {
     bottomSheetRef.current?.close();
     setToggle(false);
-    console.log('handleSheetChanges', index);
   }, []);
 
   // renders

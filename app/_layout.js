@@ -1,83 +1,97 @@
-import Colors from './constants/Colors';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import { Stack, useRouter, useSegments } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { Platform, useColorScheme } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import { ActivityIndicator, Platform } from 'react-native';
-{/*
-    Learn more about stack :: https://docs.expo.dev/router/advanced/stack/
-    Learn More about Stack option :: https://reactnavigation.org/docs/native-stack-navigator/#options
-*/}
-// Define the stack screens data
-const stackScreens = [
-  {
-    name: "index",
-    options: { title: 'Home', headerShown: false }
-  },
-  {
-    name: "drawer",
-    options: { headerShown: false }
-  },
-  {
-    name: "register",
-    options: { title: 'Create Account', headerLeft: null }
-  },
-  {
-    name: "userslist",
-    options: { title: 'User List', headerBackTitle: 'Go Back' }
-  },
-  {
-    name: "privacy",
-    options: {
-      presentation: 'modal',
-      title: 'Privacy',
-      headerStyle: { backgroundColor: Colors.background },
-      headerTintColor: '#fff',
-      headerShown: Platform.OS !== 'ios',
-      headerLeft: null
-    }
-  },
-];
+import { ActivityIndicator, Provider as PaperProvider } from 'react-native-paper';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { themes } from './theme/themes';
+import loadFonts from './theme/loadFonts';
 
-const InitialLayout = () => {
-  const { token, initialized } = useAuth();
-  const router = useRouter();
-  const segments = useSegments();
-  
-  useEffect(() => {
-    if (!initialized) return;
+export default function RootLayout() {
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === 'dark' ? themes.dark : themes.light;
 
-    const inAuthGroup = segments[0] === 'tabs';
-    if (token && !inAuthGroup) {
-      router.replace('/drawer');
-    } else if (!token && inAuthGroup) {
-      router.replace('/');
-    }
-  }, [token, initialized]);
+  const stackScreens = [
+    {
+      name: 'index',
+      options: { title: 'Home', headerShown: false },
+    },
+    {
+      name: 'drawer',
+      options: { headerShown: false },
+    },
+    {
+      name: 'register',
+      options: { title: 'Create Account', headerLeft: null },
+    },
+    {
+      name: 'userslist',
+      options: { title: 'User List', headerBackTitle: 'Go Back' },
+    },
+    {
+      name: 'privacy',
+      options: {
+        presentation: 'modal',
+        title: 'Privacy',
+        headerStyle: { backgroundColor: theme.colors.onPrimaryContainer },
+        headerTintColor: '#fff',
+        headerShown: Platform.OS !== 'ios',
+        headerLeft: null,
+      },
+    },
+  ];
 
-  if (!initialized) return <ActivityIndicator size={'large'} style={{ flex: 1 }} />;
+  const InitialLayout = () => {
+    const [isReady, setIsReady] = useState(false);
+    const { token, initialized } = useAuth();
+    const router = useRouter();
+    useEffect(() => {
+      const handleNavigation = () => {
+        if (!initialized || !isReady) return;
 
-  return (
-    <>
-      <StatusBar style="light" />
-      <Stack
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: Colors.background,
-          },
-          headerTintColor: '#fff',
-        }}>
+        if (token !== '') {
+          router.replace('/drawer');
+        } else if (!token) {
+          router.replace('/');
+        }
+      };
+
+      handleNavigation();
+    }, [token, initialized, isReady, router]);
+
+    useEffect(() => {
+      const prepare = async () => {
+        await loadFonts();
+        setIsReady(true);
+      };
+      prepare();
+    }, []);
+
+    if (!initialized || !isReady) return <ActivityIndicator size={'large'} style={{ flex: 1 }} />;
+
+    return (
+      <>
+        <StatusBar style="light" />
+        <Stack
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: theme.colors.onPrimaryContainer,
+            },
+            headerTintColor: '#fff',
+          }}>
           {stackScreens.map((screen, index) => (
             <Stack.Screen key={index} name={screen.name} options={screen.options} />
           ))}
-      </Stack>
-    </>
-  );
-};
-export default function RootLayout() {
+        </Stack>
+      </>
+    );
+  };
+
   return (
-    <AuthProvider>
-      <InitialLayout />
-    </AuthProvider>
+    <PaperProvider theme={theme}>
+      <AuthProvider>
+        <InitialLayout />
+      </AuthProvider>
+    </PaperProvider>
   );
 }

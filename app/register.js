@@ -1,18 +1,63 @@
-import {
-    View,
-    Image,
-    StyleSheet,
-    TextInput,
-    ActivityIndicator,
-    TouchableOpacity,
-    Text,
-  } from 'react-native';
-  import React, { useState, useRef } from 'react';
-  import { useAuth } from './context/AuthContext';
-  import { useRouter } from 'expo-router';
-  import Colors from './constants/Colors';
+import {View,Image,StyleSheet,TouchableOpacity,} from 'react-native';
+import React, { useState, useRef } from 'react';
+import { useAuth } from './context/AuthContext';
+import { useRouter } from 'expo-router';
+import { useTheme, TextInput,ActivityIndicator,Text } from 'react-native-paper';
   
   const Register = () => {
+    const theme = useTheme();
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        padding: 20,
+        backgroundColor: theme.colors.onPrimaryContainer,
+        justifyContent: 'center',
+      },
+      image: {
+        width: '100%',
+        height: 100,
+        resizeMode: 'contain',
+      },
+      header: {
+        fontSize: 40,
+        textAlign: 'center',
+        marginBottom: 10,
+        color: '#fff',
+      },
+      subheader: {
+        fontSize: 18,
+        textAlign: 'center',
+        marginBottom: 40,
+        color: '#fff',
+      },
+      inputField: {
+        marginVertical: 4,
+        height: 50,
+        borderWidth: 1,
+        borderColor: theme.colors.background,
+        borderRadius: 4,
+        padding: 10,
+        color: '#fff',
+        backgroundColor: theme.colors.onPrimaryContainer,
+      },
+      button: {
+        marginTop: 20,
+        alignItems: 'center',
+        backgroundColor: theme.colors.onSecondary,
+        padding: 12,
+        borderRadius: 4,
+      },
+      outlineButton: {
+        marginVertical: 8,
+        alignItems: 'center',
+        backgroundColor: 'transparent',
+        padding: 12,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: theme.colors.onPrimaryContainer,
+      },
+    });
+  
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -84,7 +129,7 @@ import {
         />
   
         <TouchableOpacity onPress={register} style={styles.button}>
-          <Text style={{ color: '#fff' }}>Sign up</Text>
+          <Text style={{ color: theme.colors.primary }}>Sign up</Text>
         </TouchableOpacity>
   
         {loading && (
@@ -100,56 +145,4 @@ import {
     );
   };
   
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 20,
-      backgroundColor: Colors.background,
-      justifyContent: 'center',
-    },
-    image: {
-      width: '100%',
-      height: 100,
-      resizeMode: 'contain',
-    },
-    header: {
-      fontSize: 40,
-      textAlign: 'center',
-      marginBottom: 10,
-      color: '#fff',
-    },
-    subheader: {
-      fontSize: 18,
-      textAlign: 'center',
-      marginBottom: 40,
-      color: '#fff',
-    },
-    inputField: {
-      marginVertical: 4,
-      height: 50,
-      borderWidth: 1,
-      borderColor: Colors.primary,
-      borderRadius: 4,
-      padding: 10,
-      color: '#fff',
-      backgroundColor: Colors.input,
-    },
-    button: {
-      marginTop: 20,
-      alignItems: 'center',
-      backgroundColor: Colors.primary,
-      padding: 12,
-      borderRadius: 4,
-    },
-    outlineButton: {
-      marginVertical: 8,
-      alignItems: 'center',
-      backgroundColor: 'transparent',
-      padding: 12,
-      borderRadius: 4,
-      borderWidth: 1,
-      borderColor: Colors.primary,
-    },
-  });
-  
-  export default Register;
+export default Register;
