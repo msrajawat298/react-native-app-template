@@ -7,7 +7,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { themes } from './theme/themes';
 import loadFonts from './theme/loadFonts';
 
-export default function RootLayout() {
+const RootLayout = () => {
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? themes.dark : themes.light;
 
@@ -71,7 +71,7 @@ export default function RootLayout() {
 
     return (
       <>
-        <StatusBar style="light" />
+        <StatusBar style={colorScheme} backgroundColor={theme.colors.onPrimaryContainer} />
         <Stack
           screenOptions={{
             headerStyle: {
@@ -96,3 +96,4 @@ export default function RootLayout() {
     </PaperProvider>
   );
 }
+export default RootLayout;

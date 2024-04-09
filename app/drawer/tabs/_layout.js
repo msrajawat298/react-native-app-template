@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native';
 import { DrawerActions } from '@react-navigation/native';
 import { useAuth } from '../../context/AuthContext';
 
-export default function TabLayout() {
+const TabLayout = () => {
   const { onLogout } = useAuth();
   const navigation = useNavigation();
   const DrawerToggle = () => {
@@ -35,6 +35,11 @@ export default function TabLayout() {
       title: 'Action',
       icon: ({ size, color }) => <Ionicons name="alert-circle-outline" size={size} color={color} />,
       onPress: () => alert('Action Performed!'),
+    },
+    {
+      name: 'LoginScreen',
+      title: 'Login',
+      icon: ({ size, color }) => <FontAwesome name="users" size={size} color={color} />,
     },
   ];
 
@@ -76,3 +81,4 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+export default TabLayout;
