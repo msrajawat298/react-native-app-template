@@ -1,8 +1,12 @@
-import { View, Image, StyleSheet, TouchableOpacity,} from 'react-native';
-import {useTheme, Text, TextInput, ActivityIndicator} from 'react-native-paper';
+import {
+  View, Image, StyleSheet, TouchableOpacity,
+} from 'react-native';
+import {
+  useTheme, Text, TextInput, ActivityIndicator,
+} from 'react-native-paper';
 import React, { useState } from 'react';
-import { useAuth } from './context/AuthContext';
 import { Link } from 'expo-router';
+import { useAuth } from './context/AuthContext';
 
 const Login = () => {
   const theme = useTheme();
@@ -56,7 +60,7 @@ const Login = () => {
   const login = async () => {
     setLoading(true);
     if (!username || !password) {
-      alert("Field is required");
+      alert('Field is required');
       setLoading(false);
       return false;
     }
@@ -74,7 +78,7 @@ const Login = () => {
         style={styles.image}
       />
       <Text style={styles.subheader}>The app to be.</Text>
-      
+
       <TextInput
         autoCapitalize="none"
         label="Enter you Username"
@@ -93,18 +97,18 @@ const Login = () => {
         <Text style={{ color: theme.colors.primary }}>Sign in</Text>
       </TouchableOpacity>
 
-      <Link href={'/register'} asChild>
+      <Link href="/register" asChild>
         <TouchableOpacity style={styles.outlineButton}>
           <Text style={{ color: '#fff' }}>Create Account</Text>
         </TouchableOpacity>
       </Link>
 
-      <Link href={'/privacy'} asChild>
+      <Link href="/privacy" asChild>
         <TouchableOpacity style={{ alignItems: 'center' }}>
-          <Text style={{ color: theme.colors.background}} >Privacy Policy</Text>
+          <Text style={{ color: theme.colors.background }}>Privacy Policy</Text>
         </TouchableOpacity>
       </Link>
-      <Link href={'/userslist'} asChild>
+      <Link href="/userslist" asChild>
         <TouchableOpacity style={{ alignItems: 'center' }}>
           <Text style={{ color: theme.colors.background }}>User List</Text>
         </TouchableOpacity>
@@ -115,7 +119,8 @@ const Login = () => {
           style={[
             StyleSheet.absoluteFill,
             { backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 1, justifyContent: 'center' },
-          ]}>
+          ]}
+        >
           <ActivityIndicator color="#fff" size="large" />
         </View>
       )}

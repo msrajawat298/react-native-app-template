@@ -26,25 +26,25 @@ const Page = () => {
       });
   }, [page]);
 
-
   const handleLoadMore = useCallback(() => {
     if (!loading) {
       setPage(users?.length);
     }
   }, [loading]);
 
-
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
-      {users.length!==0 && <FlatList
+      {users.length !== 0 && (
+      <FlatList
         data={users}
         keyExtractor={(users) => `${users?.item?.id?.toString()}-${Math.random()}`}
-        renderItem={(item) =>  <UserDataList userData={item?.item} />}
+        renderItem={(item) => <UserDataList userData={item?.item} />}
         ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#ccc' }} />}
         onEndReached={(handleLoadMore)}
         onEndReachedThreshold={0.1}
         ListFooterComponent={() => loading && <ActivityIndicator />}
-      />}
+      />
+      )}
     </View>
   );
 };

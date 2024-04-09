@@ -17,7 +17,7 @@ const Page = () => {
       <FlatList
         data={post}
         keyExtractor={(post) => post?.id?.toString()}
-        renderItem={(post) =>  <Card post={post} router={"/drawer/tabs/list/"}/>}
+        renderItem={(post) => <Card post={post} router="/drawer/tabs/list/" />}
         ListEmptyComponent={() => <ActivityIndicator />}
         ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#ccc' }} />}
       />

@@ -6,65 +6,63 @@ import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navi
 import { TouchableOpacity } from 'react-native';
 import { useAuth } from '../context/AuthContext';
 
-{/* Know more about Drawer:: https://docs.expo.dev/router/advanced/drawer/ */}
+{ /* Know more about Drawer:: https://docs.expo.dev/router/advanced/drawer/ */ }
 const screens = [
   {
-    name: "tabs",
+    name: 'tabs',
     drawerLabel: 'Home',
     headerTitle: 'Home',
     icon: { lib: 'Ionicons', name: 'home' },
     headerShown: false,
   },
   {
-    name: "Home",
+    name: 'Home',
     drawerLabel: 'Blogger',
     headerTitle: 'Blogger',
     icon: { lib: 'FontAwesome5', name: 'blogger' },
-    uri: 'https://msrajawat298.blogspot.com/'
+    uri: 'https://msrajawat298.blogspot.com/',
   },
   {
-    name: "Github",
+    name: 'Github',
     drawerLabel: 'Github',
     headerTitle: 'Github',
     icon: { lib: 'FontAwesome5', name: 'github' },
-    uri: 'https://msrajawat298.github.io/'
+    uri: 'https://msrajawat298.github.io/',
   },
   {
-    name: "Insta",
+    name: 'Insta',
     drawerLabel: 'Instagram',
     headerTitle: 'Instagram',
     icon: { lib: 'FontAwesome5', name: 'instagram' },
-    uri: 'https://www.instagram.com/msrajawat298'
+    uri: 'https://www.instagram.com/msrajawat298',
   },
   {
-    name: "Chat",
+    name: 'Chat',
     drawerLabel: 'Know More',
     headerTitle: 'Know More',
     icon: { lib: 'Ionicons', name: 'chatbubble' },
-    uri: 'https://llmbymsrajawat298.streamlit.app/'
+    uri: 'https://llmbymsrajawat298.streamlit.app/',
   },
   {
-    name: "profile",
+    name: 'profile',
     drawerLabel: 'Profile',
     headerTitle: 'My Profile',
     icon: { lib: 'Ionicons', name: 'person-outline' },
   },
   {
-    name: "TopNavigation",
+    name: 'TopNavigation',
     drawerLabel: 'TopNavigation',
     headerTitle: 'TopNavigation',
     icon: { lib: 'Ionicons', name: 'person-outline' },
   },
 ];
 
-const CustomDrawerContent = props => {
-  return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-      <DrawerItem label="Help" onPress={() => alert('Link to help')} />
-    </DrawerContentScrollView>
-  );
-};
+const CustomDrawerContent = (props) => (
+  <DrawerContentScrollView {...props}>
+    <DrawerItemList {...props} />
+    <DrawerItem label="Help" onPress={() => alert('Link to help')} />
+  </DrawerContentScrollView>
+);
 
 const DrawerLayout = () => {
   const { onLogout } = useAuth();
@@ -82,13 +80,14 @@ const DrawerLayout = () => {
           drawerActiveTintColor: '#fff',
           drawerLabelStyle: { marginLeft: -20 },
           headerRight: () => (
-            <Link href={'/'} replace asChild>
+            <Link href="/" replace asChild>
               <TouchableOpacity onPress={onLogout}>
-                <Ionicons name="log-out-outline" size={28} color={'#fff'} />
+                <Ionicons name="log-out-outline" size={28} color="#fff" />
               </TouchableOpacity>
             </Link>
           ),
-        }}>
+        }}
+      >
         {screens.map((screen, index) => {
           const IconComponent = screen.icon.lib === 'Ionicons' ? Ionicons : FontAwesome5;
           return (

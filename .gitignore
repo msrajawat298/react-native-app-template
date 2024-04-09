@@ -27,6 +27,9 @@ yarn-error.*
 # macOS
 .DS_Store
 *.pem
+*.iml
+.env
+*.log
 
 # local env files
 .env*.local
@@ -36,3 +39,8 @@ yarn-error.*
 .secrets/
 android
 ios
+
+# testing
+!/coverage
+/coverage/*
+!/coverage/lcov.info

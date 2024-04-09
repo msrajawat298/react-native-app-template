@@ -1,4 +1,6 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, {
+  useCallback, useMemo, useRef, useState,
+} from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Paragraph, Text } from 'react-native-paper';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
@@ -8,12 +10,12 @@ const App = () => {
   const [toggle, setToggle] = useState(true);
   // ref
   const bottomSheetRef = useRef(null);
- // variables
- const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
+  // variables
+  const snapPoints = useMemo(() => ['25%', '50%', '90%'], []);
   // callbacks
   const handleOpenPress = useCallback((index) => {
     bottomSheetRef.current?.snapToIndex(index);
-    if (index!==-1) setToggle(true);
+    if (index !== -1) setToggle(true);
   }, []);
   const handleClosePress = useCallback((index) => {
     bottomSheetRef.current?.close();
@@ -24,7 +26,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       {!toggle && <Button title="Snap To 90%" mode="contained" onPress={() => handleOpenPress(1)}> Open Sheet</Button>}
-      {toggle && <Button title="Close Sheet" mode="contained" onPress={handleClosePress} > Close Sheet</Button>}
+      {toggle && <Button title="Close Sheet" mode="contained" onPress={handleClosePress}> Close Sheet</Button>}
       <BottomSheet
         ref={bottomSheetRef}
         snapPoints={snapPoints}

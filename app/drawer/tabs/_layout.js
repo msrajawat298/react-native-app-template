@@ -3,8 +3,8 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs, Link, useNavigation } from 'expo-router';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
-import { useAuth } from '../../context/AuthContext';
 import { DrawerActions } from '@react-navigation/native';
+import { useAuth } from '../../context/AuthContext';
 
 export default function TabLayout() {
   const { onLogout } = useAuth();
@@ -15,31 +15,31 @@ export default function TabLayout() {
   // Define the tab screens data
   const tabScreens = [
     {
-      name: "index",
+      name: 'index',
       title: 'Home',
       icon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
     },
     {
-      name: "list",
+      name: 'list',
       title: 'Blog Posts',
       icon: ({ size, color }) => <Ionicons name="list" size={size} color={color} />,
       badge: 9,
     },
     {
-      name: "settings",
+      name: 'settings',
       title: 'Settings',
       icon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
     },
     {
-      name: "action",
+      name: 'action',
       title: 'Action',
       icon: ({ size, color }) => <Ionicons name="alert-circle-outline" size={size} color={color} />,
-      onPress: () => alert('Action Performed!')
+      onPress: () => alert('Action Performed!'),
     },
   ];
 
   return (
-    <Tabs 
+    <Tabs
       screenOptions={{
         headerStyle: {
           backgroundColor: '#171630',
@@ -47,18 +47,18 @@ export default function TabLayout() {
         headerTintColor: '#fff',
         headerLeft: () => (
           <TouchableOpacity onPress={DrawerToggle} style={{ marginLeft: 18, marginRight: 18 }}>
-            <FontAwesome5 name="bars" size={20} color={'#fff'} />
+            <FontAwesome5 name="bars" size={20} color="#fff" />
           </TouchableOpacity>
         ),
         headerRight: () => (
-          <Link href={'/'} replace asChild>
+          <Link href="/" replace asChild>
             <TouchableOpacity onPress={onLogout}>
-              <Ionicons name="log-out-outline" size={28} color={'#fff'} />
+              <Ionicons name="log-out-outline" size={28} color="#fff" />
             </TouchableOpacity>
           </Link>
         ),
       }}
-      
+
     >
       {tabScreens.map((screen, index) => (
         <Tabs.Screen
