@@ -67,7 +67,7 @@ export default function RootLayout() {
       prepare();
     }, []);
 
-    if (!initialized || !isReady) return <ActivityIndicator size={'large'} style={{ flex: 1 }} />;
+    if (!initialized || !isReady) return <ActivityIndicator size="large" style={{ flex: 1 }} />;
 
     return (
       <>
@@ -78,7 +78,8 @@ export default function RootLayout() {
               backgroundColor: theme.colors.onPrimaryContainer,
             },
             headerTintColor: '#fff',
-          }}>
+          }}
+        >
           {stackScreens.map((screen, index) => (
             <Stack.Screen key={index} name={screen.name} options={screen.options} />
           ))}

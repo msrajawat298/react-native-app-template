@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import {
+  createContext, useContext, useEffect, useMemo, useState,
+} from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { API_URL, JWT_KEY } from '../constants/constants';
 
@@ -18,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       const storedToken = await SecureStore.getItemAsync(JWT_KEY);
       if (storedToken) {
         setToken(storedToken);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+        axios.defaults.headers.common.Authorization = `Bearer ${storedToken}`;
       }
       setInitialized(true);
     };
@@ -29,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const result = await axios.post(`${API_URL}auth/login`, { username, password });
       setToken(result.data.token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.token}`;
+      axios.defaults.headers.common.Authorization = `Bearer ${result.data.token}`;
       await SecureStore.setItemAsync(JWT_KEY, result.data.token);
       return result;
     } catch (error) {
@@ -49,7 +51,7 @@ export const AuthProvider = ({ children }) => {
   const handleLogout = async () => {
     setToken(null);
     await SecureStore.deleteItemAsync(JWT_KEY);
-    axios.defaults.headers.common['Authorization'] = '';
+    axios.defaults.headers.common.Authorization = '';
   };
 
   const value = useMemo(() => ({

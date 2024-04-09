@@ -1,5 +1,5 @@
 import { DrawerActions } from '@react-navigation/native';
-import { View, Text, Button } from "react-native";
+import { View, Text, Button } from 'react-native';
 import { useNavigation } from 'expo-router';
 
 export default function Tab() {
@@ -9,7 +9,7 @@ export default function Tab() {
   };
 
   return (
-    <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
+    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
       <Text>Tab [Home]</Text>
       <Button title="Open Drawer" onPress={onToggle} />
     </View>

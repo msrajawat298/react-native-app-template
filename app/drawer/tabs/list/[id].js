@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Text, StyleSheet, useWindowDimensions, ActivityIndicator } from 'react-native';
+import {
+  ScrollView, Text, StyleSheet, useWindowDimensions, ActivityIndicator,
+} from 'react-native';
 import { useLocalSearchParams, Stack } from 'expo-router';
 import RenderHtml from 'react-native-render-html';
 
 const styles = StyleSheet.create({
   container: {
-      padding: 10,
+    padding: 10,
   },
   title: {
-      fontSize: 20,
-      fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   content: {
-      fontSize: 16,
+    fontSize: 16,
   },
 });
 export default function SinglePost() {
@@ -28,21 +30,22 @@ export default function SinglePost() {
 
   const { width } = useWindowDimensions();
   const filteredContent = postDetails?.content?.rendered.replace(/<iframe.*?<\/iframe>/gi, '');
-  
+
   return (
-      <ScrollView>
-        {!postDetails && <ActivityIndicator />}
-        {postDetails && (
-          <ScrollView style={styles.container}>
-            <Stack.Screen  options={{ title: `${postDetails?.title?.rendered}` } }  />
-            <Text style={styles.title}>{postDetails?.title?.rendered}</Text>
-            <RenderHtml 
-              contentWidth={width}
-              source={{ html: filteredContent }}
-              baseStyle={styles.content} 
-            />
-          </ScrollView>)}
+    <ScrollView>
+      {!postDetails && <ActivityIndicator />}
+      {postDetails && (
+      <ScrollView style={styles.container}>
+        <Stack.Screen options={{ title: `${postDetails?.title?.rendered}` }} />
+        <Text style={styles.title}>{postDetails?.title?.rendered}</Text>
+        <RenderHtml
+          contentWidth={width}
+          source={{ html: filteredContent }}
+          baseStyle={styles.content}
+        />
       </ScrollView>
-      
+      )}
+    </ScrollView>
+
   );
 }
