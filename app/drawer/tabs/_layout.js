@@ -18,6 +18,7 @@ const TabLayout = () => {
       name: 'index',
       title: 'Home',
       icon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+      headerShown: false,
     },
     {
       name: 'list',

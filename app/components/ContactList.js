@@ -1,7 +1,7 @@
 import React from 'react';
 import { List } from 'react-native-paper';
 import PropTypes from 'prop-types';
-import renderAvatar from './renderAvatar';
+import RenderAvatar from './RenderAvatar';
 
 const Contact = React.memo(({ userData }) => {
   if (!userData) return null;
@@ -18,7 +18,7 @@ const Contact = React.memo(({ userData }) => {
     <List.Item
       title={name}
       description={`Mobile Number : ${phoneNumber}`}
-      left={() => renderAvatar()}
+      left={() => RenderAvatar()}
     />
   );
 });

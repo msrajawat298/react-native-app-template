@@ -48,6 +48,7 @@ const screens = [
     drawerLabel: 'Profile',
     headerTitle: 'My Profile',
     icon: { lib: 'Ionicons', name: 'person-outline' },
+    headerShown: false,
   },
   {
     name: 'TopNavigation',
